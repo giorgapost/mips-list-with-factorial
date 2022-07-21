@@ -8,7 +8,7 @@ choice5: .ascii "5) Print the node with the minimum value. Position, ID and valu
 choice6: .ascii "6) Print the factorial of a node's value.\n"
 choice7: .ascii "7) Quit.\n"
 readChoice: .asciiz "Please enter your choice (1-7): "
-newListSize: .asciiz "Please enter the size of the new list: "
+newListSize: .asciiz "Please enter the size of the new list (max 100 nodes): "
 readID: .asciiz "\nPlease enter a (unique) integer ID for this node: "
 readValue: .asciiz "\nPlease enter the integer value of this node: "
 nodeToPrint: .asciiz "\nPlease enter the ID of a node to print: "
@@ -23,7 +23,7 @@ factorialEnd: .asciiz " is: "
 invalidValue_error: .asciiz "\nError. Invalid value.\n\n"
 emptyListError: .asciiz "\nError. There is no list.\n\n"
 fullList_error: .asciiz "\nError. The list is full.\n\n"
-notFoundError: .asciiz "\nError. Not found.\n\n"
+notFoundError: .asciiz "\nError. Given ID invalid or missing.\n\n"
 
 mem: .align 2
 	 .space 600
@@ -69,13 +69,17 @@ main:
 						
 			bne $t0, $t1, else2_lbl
 			
-			li $v0 4     #print the readID message
-			la $a0 readID
-			syscall
-						
-			li $v0 5   #read the id
-			syscall
-			move $t2 $v0  #t2=id
+			idReading:
+				li $v0 4     #print the readID message
+				la $a0 readID
+				syscall
+							
+				li $v0 5   #read the id
+				syscall
+				move $t2 $v0  #t2=id
+				bltz $t2 invalidID        #if t2<0
+				sra $t3 $t2 16
+				bne $t3 $0 invalidID      #if t2>65535
 			
 			li $v0 4  #print the readValue message
 			la $a0 readValue
@@ -189,7 +193,12 @@ main:
 	
 	li $v0 10
 	syscall
-
+	
+	invalidID:
+	li $v0 4
+	la $a0 invalidValue_error
+	syscall
+	b idReading
 
 
 ##########################################
@@ -204,15 +213,16 @@ func0:
 	bgtz $t3 invalidValue0  #if t1>100
 		
 	loop0:
-		
-	
 		li $v0 4  #print the message "enter the id:"
 		la $a0 readID
 		syscall
 	
 		li $v0 5   #read the id
 		syscall
-		move $t3 $v0  #t3 is the id
+		move $t3 $v0                  #t3 is the id
+		bltz $t3 invalidValue1        #if t3<0
+		sra $t6 $t3 16
+		bne $t6 $0 invalidValue1      #if t3>65535
 	
 		li $v0 4  #print the message "enter value:"
 		la $a0 readValue
@@ -254,6 +264,12 @@ func0:
 	afterLoop0:
 		move $v0 $t1	
 		b endFunc0
+		
+	invalidValue1:
+		li $v0 4
+		la $a0 invalidValue_error
+		syscall
+		b loop0
 	
 	invalidValue0:
 		li $v0 4
