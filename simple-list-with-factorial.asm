@@ -28,8 +28,6 @@ notFoundError: .asciiz "\nError. Given ID invalid or missing.\n\n"
 mem: .align 2
 	 .space 600
 	 
-
-
 .text
 ######s0 is the number of nodes
 
@@ -64,7 +62,6 @@ main:
 		
 		li $t1, 7
 		beq $t0, $t1, end_loop   #Loop condition
-		
 			li $t1, 1			 #choice==1
 						
 			bne $t0, $t1, else2_lbl
@@ -106,7 +103,6 @@ main:
 			move $a1 $s0
 			jal func2
 			move $s0 $v0
-			
 			
 			b next_loop
 			
@@ -163,8 +159,6 @@ main:
 			li $t1, 6
 			bne $t0, $t1, else_lbl
 
-			
-			
 			la $a0 nodeToFactorial
 			li $v0 4
 			syscall
@@ -199,7 +193,6 @@ main:
 	la $a0 invalidValue_error
 	syscall
 	b idReading
-
 
 ##########################################
 func0:
@@ -289,9 +282,7 @@ func1:
 	move $t3 $a3  #t3 is the value
 	
 	li $t4 100
-	
 	beq $t1 $t4 fullList1
-	
 	li $t4 0
 	
 	loop1:
@@ -335,13 +326,11 @@ func1:
 		move $v0 $t1
 		b endFunc1
 		
-	
 	endFunc1:
 		jr $ra
 		
 ###########################################
 func2:
-	
 	move $t1 $a1
 	
 	beq $t1 $zero noList2  #if counter==0 there is no list
@@ -488,8 +477,6 @@ func5:
 			b loop5
 		endLoop5:
 		
-		
-		
 		li $v0 4
 		la $a0 nodePosition
 		syscall
@@ -543,8 +530,6 @@ func6:
 	loop6:
 	sub $t4 $t1 $t3
 	bltz $t4 outOfBounds6
-	
-	
 		
 	###Load from memory#####################
 		li $t6 0                    #Initialize t6
