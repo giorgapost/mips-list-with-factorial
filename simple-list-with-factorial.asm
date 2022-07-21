@@ -358,19 +358,15 @@ func3:
 		li $t6 0                    #Initialize t6
 		li $t4 1
 		and $t4 $t4 $t3
-		beq $t4 $zero even3       #if t4==0 node is even
+		beq $t4 $zero even3       #if t4==0 then node is even
                             	    #node is odd
 		lw $t5 0($t0)               #t5=value 
-		lbu $t6 5($t0)              #t6=id
-		sll $t6 $t6 8
-		lbu $t6 4($t0)
+		lhu $t6 4($t0)              #t6=id
 	
 		b afterCond3
 		even3:                    #node is even
 		
-		lbu $t6 1($t0)
-		sll $t6 $t6 8
-		lbu $t6 0($t0)
+		lhu $t6 0($t0)
 		lw $t5 2($t0)
 	
 		afterCond3:
@@ -432,12 +428,8 @@ func5:
 	
 	beq $zero $t1 emptyList5	
 	
-	lw $t3 0($t0)  #t3 is the min value
-	
-	li $t4 0
-	lbu $t4 5($t0)  #t4 is the id of the min node
-	sll $t4 $t4 8
-	lbu $t4 4($t0)
+	lw $t3 0($t0)    #t3 is the min value
+	lhu $t4 4($t0)   #t4 is the id of the min node
 	
 	move $t5 $t2     #t5 is the position of the min node
 	
@@ -454,19 +446,12 @@ func5:
 		beq $t6 $zero even5       #if t6==0 then node is even
                             	    #node is odd
 		lw $t7 0($t0)             #t7=value
-		lbu $t8 5($t0)            #t8=id
-		sll $t8 $t8 8
-		lbu $t8 4($t0)
+		lhu $t8 4($t0)            #t8=id
 	
 		b afterCond5
 		even5:                    #node is even
 		
-		
-		lbu $t8 1($t0)       #t8=id
-		
-		sll $t8 $t8 8
-		lbu $t8 0($t0)
-		
+		lhu $t8 0($t0)       #t8=id
 		lw $t7 2($t0)        #t7=value
 	    
 		afterCond5:
@@ -552,16 +537,12 @@ func6:
 		beq $t4 $zero even6       #if t4==0 then node is even
                             	    #node is odd
 		lw $s0 0($t0)               #s0=value 
-		lbu $t5 5($t0)              #t5=id
-		sll $t5 $t5 8
-		lbu $t5 4($t0)
-	
+		lhu $t5 4($t0)              #t5=id
+		
 		b afterCond6
 		even6:                    #node is even
 		
-		lbu $t5 1($t0)
-		sll $t5 $t5 8
-		lbu $t5 0($t0)
+		lhu $t5 0($t0)
 		lw $s0 2($t0)
 	
 		afterCond6:
