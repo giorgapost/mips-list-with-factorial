@@ -17,7 +17,7 @@ After the list has been initialized successfully, a multiple choice menu appears
 - The 3rd option allows to print the contents of a node (position in the list, ID and integer value).
 - The 4th option allows to print the current size of the list.
 - The 5th option allows to print the contents of the node with the minimum integer value.
-- The 6th option allows to print the factorial of a node's integer value. However if the factorial is greater than (2<sup>31</sup>-1), overflow issues may occur. 
+- The 6th option allows to print the factorial of a node's integer value. However, if the factorial is greater than (2<sup>31</sup>-1), overflow issues may occur and the printed number may not be correct.
   > **Note**  
   When the integer value of a node is zero or negative, its factorial is returned to be equal with 1.
 - The 7th option just terminates the program.
