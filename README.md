@@ -1,7 +1,7 @@
 # Simple list implemented in MIPS assembly
 This is the implementation of a simple list in MIPS assembly. The easiest way for testing is to run it on a simulator such as [QTSpim](http://spimsimulator.sourceforge.net).
 
-When the program starts, it asks for the size of the list, and an integer number greater than 0 has to be given. Afterwards, all nodes have to be initialized from the user before the list is ready to be used. Each node consists of an integer ID which gets values from 0 to 255, and an integer value which gets values from (-2<sup>31</sup>+1) to (2<sup>31</sup>-1). Setting out-of-bounds values for the above variables may cause overflow issues. What is more, the ID of every node has to be unique, otherwise that node may not be discoverable.
+When the program starts, it asks for the size of the list, and an integer number greater than 0 has to be given. Afterwards, all nodes have to be initialized from the user before the list is ready to be used. Each node consists of an integer ID which gets values from 0 to (2<sup>16</sup>-1), and an integer value which gets values from (-2<sup>31</sup>+1) to (2<sup>31</sup>-1). Setting out-of-bounds values for the above variables may cause overflow issues. What is more, the ID of every node has to be unique, otherwise that node may not be discoverable.
 
 After the list has been initialized, a multiple choice menu appears:
 - 1st option allows for a new node to be added at the end of the list.
