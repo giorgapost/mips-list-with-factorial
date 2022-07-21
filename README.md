@@ -1,5 +1,5 @@
 # Simple list implemented in MIPS Assembly
-This is the implementation of a simple list in MIPS Assembly. The easiest way of testing is to run it on a simulator such as [QTSpim](http://spimsimulator.sourceforge.net). 
+This is the implementation of a simple list for MIPS processor, in Assembly language. The easiest way of testing is to run it on a simulator such as [QTSpim](http://spimsimulator.sourceforge.net). 
 
 The list utilizes a space of exactly 600 bytes in the memory of MIPS, and it can store at most 100 nodes. Each node consists of a 16-bit ID which gets values from 0 to (2<sup>16</sup>-1), and a 32-bit word which gets values from (-2<sup>31</sup>+1) to (2<sup>31</sup>-1). 
 
